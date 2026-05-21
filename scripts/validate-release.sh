@@ -12,6 +12,7 @@ python3 -m json.tool .claude-plugin/marketplace.json >/dev/null
 
 test -f docs/payload-contract.md
 test -f docs/release-process.md
+test -f docs/release-notes-v0.1.0.md
 test -f docs/codex-plugin.md
 test -f docs/claude-plugin.md
 

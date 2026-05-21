@@ -16,6 +16,7 @@ class DocumentationTests(unittest.TestCase):
             "docs/claude-plugin.md",
             "docs/payload-contract.md",
             "docs/release-process.md",
+            "docs/release-notes-v0.1.0.md",
             "docs/security.md",
         ]
 

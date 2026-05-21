@@ -54,6 +54,14 @@ Do not save or commit response JSON or screen images unless they contain only sy
 ## Known Pre-Launch Blockers
 
 - Live synthetic TRMNL Private Plugin push has not been run in this public repo.
-- GitHub-hosted Codex marketplace install has not been verified.
-- GitHub-hosted Claude marketplace install has not been verified.
-- GitHub Actions CI has not run on a hosted clean checkout.
+- `v0.1.0` has not been tagged or published.
+
+## Completed Launch Checks
+
+- Public GitHub repository created at `https://github.com/jrausercisco/trmnl-agent-bridge`.
+- Initial `main` branch pushed.
+- GitHub Actions CI passed on the hosted clean checkout.
+- GitHub topics configured.
+- GitHub-hosted Codex marketplace add verified from an isolated temporary Codex home.
+- GitHub-hosted Claude marketplace add and plugin install verified from an isolated temporary home.
+- Draft `v0.1.0` release notes are in `docs/release-notes-v0.1.0.md`.

@@ -20,5 +20,8 @@ Use this checklist before making the repository public.
 - [x] Add documentation validation coverage for Phase 5 docs.
 - [x] Add release hardening files, issue templates, CI workflow, and security reporting docs.
 - [x] Run the local secret scan before the first push.
-- [ ] Confirm GitHub Actions CI passes after the first public push.
+- [x] Confirm GitHub Actions CI passes after the first public push.
+- [x] Verify GitHub-hosted Codex marketplace add flow.
+- [x] Verify GitHub-hosted Claude marketplace add and install flow.
+- [x] Draft `v0.1.0` release notes.
 - [ ] Tag the first release only after a real CLI smoke test passes.

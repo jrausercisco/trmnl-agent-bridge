@@ -522,6 +522,8 @@ Implemented:
 
 ### Phase 7: Public GitHub Launch
 
+Status: public repo created and hosted validation passed on 2026-05-21; `v0.1.0` tag/release blocked on live synthetic TRMNL webhook push.
+
 Deliverables:
 
 - Create public GitHub repository.
@@ -535,6 +537,21 @@ Exit criteria:
 - Repo is public.
 - Release page is accurate.
 - A user can install from GitHub and push a synthetic payload.
+
+Implemented:
+
+- Created the public repository at `https://github.com/jrausercisco/trmnl-agent-bridge`.
+- Pushed the initial `main` branch.
+- Added GitHub topics: `trmnl`, `codex`, `claude-code`, `agent-skills`, `private-plugin`, `e-ink`, and `webhooks`.
+- Confirmed GitHub Actions CI passed on the hosted clean checkout.
+- Verified GitHub-hosted Codex marketplace add from an isolated temporary `CODEX_HOME`.
+- Verified GitHub-hosted Claude marketplace add and local plugin install from an isolated temporary `HOME`.
+- Added draft release notes at `docs/release-notes-v0.1.0.md`.
+
+Blocked:
+
+- `TRMNL_WEBHOOK_URL` is not configured, so the live synthetic TRMNL Private Plugin push has not run.
+- `v0.1.0` tag and GitHub release were intentionally not created.
 
 ### Phase 8: Community Distribution
 
@@ -623,7 +640,7 @@ Use generated screenshots only with synthetic data.
 - [x] Claude plugin validated locally.
 - [x] Secret scan passed locally.
 - [ ] CI passed on GitHub.
-- [ ] Release notes written.
+- [x] Release notes drafted.
 - [ ] `v0.1.0` tag created.
 - [ ] Public repo shared.
 - [ ] Community feedback issue opened.
@@ -636,10 +653,9 @@ Use generated screenshots only with synthetic data.
 
 ## Recommended Next Step
 
-Proceed to Phase 7 public GitHub launch preparation:
+Complete the live synthetic TRMNL Private Plugin gate, then finish Phase 7:
 
-1. Create the public GitHub repository.
-2. Push the initial main branch.
-3. Confirm GitHub Actions CI passes on the clean hosted checkout.
-4. Run the live synthetic TRMNL Private Plugin push before tagging `v0.1.0`.
-5. Verify GitHub-hosted Codex and Claude marketplace install flows.
+1. Store or pass `TRMNL_WEBHOOK_URL`.
+2. Run `trmnl-agent push --merge-file examples/sample-payload.json`.
+3. If device API credentials are available, run `trmnl-agent smoke-test --push --fetch-screen --compare-screen --wait-seconds 30`.
+4. Tag `v0.1.0` and create the GitHub release from `docs/release-notes-v0.1.0.md`.
