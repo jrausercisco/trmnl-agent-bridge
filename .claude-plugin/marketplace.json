@@ -1,0 +1,21 @@
+{
+  "name": "trmnl-agent-bridge",
+  "owner": {
+    "name": "John Rauser"
+  },
+  "description": "Claude Code skills for publishing compact local agent status snapshots to TRMNL.",
+  "plugins": [
+    {
+      "name": "trmnl-agent-bridge",
+      "source": "./plugins/claude/trmnl-agent-bridge",
+      "description": "Publish privacy-safe Claude Code status snapshots to TRMNL Private Plugin webhooks.",
+      "category": "Productivity",
+      "tags": [
+        "trmnl",
+        "agent-status",
+        "claude-code",
+        "webhook"
+      ]
+    }
+  ]
+}

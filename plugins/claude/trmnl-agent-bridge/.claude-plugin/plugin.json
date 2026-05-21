@@ -1,0 +1,21 @@
+{
+  "name": "trmnl-agent-bridge",
+  "displayName": "TRMNL Agent Bridge",
+  "version": "0.0.0",
+  "description": "Publish compact local agent status updates to TRMNL through the trmnl-agent CLI.",
+  "author": {
+    "name": "John Rauser",
+    "url": "https://github.com/jrausercisco"
+  },
+  "homepage": "https://github.com/jrausercisco/trmnl-agent-bridge",
+  "repository": "https://github.com/jrausercisco/trmnl-agent-bridge",
+  "license": "MIT",
+  "keywords": [
+    "trmnl",
+    "agent-status",
+    "claude-code",
+    "e-ink",
+    "webhook"
+  ],
+  "skills": "./skills/"
+}

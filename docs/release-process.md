@@ -1,0 +1,59 @@
+# Release Process
+
+This project is not ready for a public release until the live synthetic TRMNL push and hosted CI checks are complete.
+
+## Pre-Release Checks
+
+Run:
+
+```bash
+./scripts/validate-release.sh
+```
+
+This validates:
+
+- JSON examples and manifests.
+- Python unit tests.
+- CLI dry-run push from sample payloads.
+- CLI dry smoke test.
+- Claude marketplace and plugin validation when `claude` is installed.
+
+`validate-release.sh` runs the dedicated secret scan. You can also run it directly:
+
+```bash
+./scripts/secret-scan.sh
+```
+
+## Live Synthetic TRMNL Gate
+
+Before tagging `v0.1.0`, run a live test against a TRMNL Private Plugin using only synthetic data:
+
+```bash
+trmnl-agent push --merge-file examples/sample-payload.json
+```
+
+When device API credentials are configured, also run:
+
+```bash
+trmnl-agent smoke-test --push --fetch-screen --compare-screen --wait-seconds 30
+```
+
+Do not save or commit response JSON or screen images unless they contain only synthetic data and have been reviewed.
+
+## Public Launch Checklist
+
+1. Confirm the repo contains no private paths, webhook URLs, API tokens, device IDs, response JSON, or private screenshots.
+2. Confirm README, setup docs, payload contract, plugin docs, and security docs are current.
+3. Confirm Codex and Claude local marketplace validation still passes.
+4. Create the public GitHub repository.
+5. Push the initial main branch.
+6. Add GitHub topics: `trmnl`, `codex`, `claude-code`, `agent-skills`, `private-plugin`, `e-ink`, `webhooks`.
+7. Tag `v0.1.0` only after validation and the live synthetic TRMNL gate pass.
+8. Write release notes with install, setup, safety, and known-limitations sections.
+
+## Known Pre-Launch Blockers
+
+- Live synthetic TRMNL Private Plugin push has not been run in this public repo.
+- GitHub-hosted Codex marketplace install has not been verified.
+- GitHub-hosted Claude marketplace install has not been verified.
+- GitHub Actions CI has not run on a hosted clean checkout.

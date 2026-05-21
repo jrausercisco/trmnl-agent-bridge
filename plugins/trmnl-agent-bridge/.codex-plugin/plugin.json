@@ -1,0 +1,41 @@
+{
+  "name": "trmnl-agent-bridge",
+  "version": "0.0.0",
+  "description": "Publish compact local agent status updates to TRMNL through the trmnl-agent CLI.",
+  "author": {
+    "name": "John Rauser",
+    "url": "https://github.com/jrausercisco"
+  },
+  "homepage": "https://github.com/jrausercisco/trmnl-agent-bridge",
+  "repository": "https://github.com/jrausercisco/trmnl-agent-bridge",
+  "license": "MIT",
+  "keywords": [
+    "trmnl",
+    "agent-status",
+    "codex",
+    "e-ink",
+    "webhook"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "TRMNL Agent Bridge",
+    "shortDescription": "Send safe Codex status snapshots to TRMNL.",
+    "longDescription": "Use TRMNL Agent Bridge to summarize the current Codex run into a compact, privacy-safe agent-status payload, dry-run it locally, push it to a TRMNL Private Plugin webhook, and run setup or smoke-test checks through the trmnl-agent CLI.",
+    "developerName": "John Rauser",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/jrausercisco/trmnl-agent-bridge",
+    "privacyPolicyURL": "https://github.com/jrausercisco/trmnl-agent-bridge/blob/main/docs/security.md",
+    "termsOfServiceURL": "https://github.com/jrausercisco/trmnl-agent-bridge/blob/main/LICENSE",
+    "defaultPrompt": [
+      "Publish the current Codex status to TRMNL.",
+      "Dry-run a TRMNL status payload.",
+      "Run the TRMNL bridge smoke test."
+    ],
+    "brandColor": "#111111",
+    "screenshots": []
+  }
+}

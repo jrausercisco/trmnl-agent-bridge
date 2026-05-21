@@ -1,0 +1,36 @@
+name: Feature Request
+description: Suggest a new local-first TRMNL agent bridge capability.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep requests privacy-safe. Do not include real private payloads, webhook URLs, device IDs, API tokens, screenshots with private data, raw prompts, logs, email/calendar content, customer data, or local file bodies.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: payload
+    attributes:
+      label: Synthetic Example
+      description: Optional synthetic payload, command, or template sketch.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety Check
+      options:
+        - label: This request can be described without private payloads or credentials.
+          required: true

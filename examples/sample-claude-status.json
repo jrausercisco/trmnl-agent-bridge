@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": "claude",
+  "title": "CLAUDE NOW",
+  "state": "WATCH",
+  "headline": "Research summary is in progress",
+  "detail": "Claude Code is preparing a concise implementation note.",
+  "next": "Wait for the final summary.",
+  "signals": [
+    "Task: research",
+    "Mode: local",
+    "Push: dry-run"
+  ],
+  "health": "Dry run OK",
+  "updated": "2026-05-20T14:18:00-07:00"
+}

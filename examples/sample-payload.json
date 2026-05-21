@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": "codex",
+  "title": "AGENT NOW",
+  "state": "ACTION",
+  "headline": "Review failed test run",
+  "detail": "One workflow needs attention.",
+  "next": "Last run completed 14:12",
+  "signals": [
+    "Tests: 1 failed",
+    "PR: ready",
+    "Agent: idle"
+  ],
+  "health": "TRMNL webhook OK | payload 612 bytes",
+  "updated": "14:13"
+}

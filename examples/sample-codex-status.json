@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": "codex",
+  "title": "CODEX NOW",
+  "state": "BLOCKED",
+  "headline": "Tests failed after a scaffold change",
+  "detail": "The current Codex run needs a markdown-link check inspected.",
+  "next": "Inspect failing markdown-link check.",
+  "signals": [
+    "Tests: 1 failed",
+    "Working tree: dirty",
+    "Review: not requested"
+  ],
+  "health": "Dry run OK",
+  "updated": "2026-05-20T14:13:00-07:00"
+}
