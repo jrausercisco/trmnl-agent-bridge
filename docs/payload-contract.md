@@ -65,6 +65,12 @@ Unknown fields are rejected by the CLI. This prevents accidental publication of 
 Dry-run a payload:
 
 ```bash
+trmnl-agent sample | trmnl-agent push --stdin --dry-run
+```
+
+Dry-run a checked-in example from a local repository checkout:
+
+```bash
 trmnl-agent push --merge-file examples/sample-payload.json --dry-run
 ```
 

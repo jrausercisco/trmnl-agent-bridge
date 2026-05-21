@@ -13,7 +13,7 @@ from .payloads import json_bytes
 
 
 TRMNL_BASE_URL = "https://trmnl.com"
-USER_AGENT = "trmnl-agent-bridge/0.1.0"
+USER_AGENT = "trmnl-agent-bridge/0.1.1"
 
 
 class TrmnlError(RuntimeError):

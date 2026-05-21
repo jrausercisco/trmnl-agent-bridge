@@ -81,13 +81,23 @@ def command_setup(args: argparse.Namespace) -> int:
                 "2. Paste templates/agent-status.liquid.html into the plugin markup.",
                 "3. Store the webhook URL as TRMNL_WEBHOOK_URL or in macOS Keychain:",
                 "   trmnl-agent keychain-set --account TRMNL_WEBHOOK_URL",
-                "4. Dry-run a payload:",
-                "   trmnl-agent push --merge-file examples/sample-payload.json --dry-run",
-                "5. Push when ready:",
-                "   trmnl-agent push --merge-file examples/sample-payload.json",
+                "4. Dry-run a synthetic payload:",
+                "   trmnl-agent sample | trmnl-agent push --stdin --dry-run",
+                "5. Push synthetic data when ready:",
+                "   trmnl-agent sample | trmnl-agent push --stdin",
             ]
         )
     )
+    return 0
+
+
+def command_sample(args: argparse.Namespace) -> int:
+    payload = default_payload(source=args.source)
+    if args.state:
+        payload = dict(payload)
+        payload["state"] = args.state.upper()
+        payload = normalize_payload(payload)
+    print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
 
 
@@ -306,6 +316,11 @@ def build_parser() -> argparse.ArgumentParser:
 
     setup = subparsers.add_parser("setup", help="Print the Private Plugin setup checklist.")
     setup.set_defaults(func=command_setup)
+
+    sample = subparsers.add_parser("sample", help="Print a synthetic agent-status payload.")
+    sample.add_argument("--source", default="generic", choices=["generic", "codex", "claude"])
+    sample.add_argument("--state", choices=["CLEAR", "WATCH", "ACTION", "BLOCKED", "FAIL"])
+    sample.set_defaults(func=command_sample)
 
     keychain_set = subparsers.add_parser("keychain-set", help="Store one TRMNL credential in macOS Keychain.")
     keychain_set.add_argument("--account", required=True, choices=KEYCHAIN_ACCOUNTS)

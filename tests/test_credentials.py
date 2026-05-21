@@ -32,7 +32,7 @@ class CredentialTests(unittest.TestCase):
     def test_redact_secret_never_prints_full_value(self) -> None:
         self.assertEqual(credentials.redact_secret(None), "<missing>")
         self.assertEqual(credentials.redact_secret("abcd"), "<set>")
-        self.assertEqual(credentials.redact_secret("https://secret.example/path"), "http...path")
+        self.assertEqual(credentials.redact_secret("https://secret.example/path"), "<set>")
 
 
 if __name__ == "__main__":

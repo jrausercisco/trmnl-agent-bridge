@@ -92,11 +92,17 @@ def payload_size_bytes(payload: dict[str, Any]) -> int:
     return len(json_bytes(payload))
 
 
-def default_payload() -> dict[str, Any]:
+def default_payload(source: str = "generic") -> dict[str, Any]:
+    source_value = {
+        "generic": "agent",
+        "agent": "agent",
+        "codex": "codex",
+        "claude": "claude",
+    }.get(source, source)
     return normalize_payload(
         {
             "schema_version": 1,
-            "source": "codex",
+            "source": source_value,
             "title": "AGENT NOW",
             "state": "ACTION",
             "headline": "Review failed test run",

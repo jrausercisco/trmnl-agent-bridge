@@ -27,6 +27,17 @@ pbcopy < templates/agent-status.liquid.html
 
 Avoid copying from a browser-rendered preview of the `.html` file. The editor needs the markup source beginning with `<div class="layout...">`; if it starts with `{{ title ... }}`, the HTML tags were stripped before paste.
 
+For a full recipe-style setup, use the files under `trmnl_plugin/`:
+
+- `markup_full.html`
+- `markup_half_vertical.html`
+- `markup_half_horizontal.html`
+- `markup_quadrant.html`
+- `plugin.yml`
+- `icon.svg`
+
+`templates/agent-status.liquid.html` and `trmnl_plugin/markup_full.html` are intentionally equivalent so the simple setup path and recipe setup path stay aligned.
+
 ## First Webhook Checklist
 
 The first successful setup depends on three separate pieces being correct: the TRMNL plugin strategy, the markup source, and the local webhook credential.
@@ -36,7 +47,7 @@ The first successful setup depends on three separate pieces being correct: the T
 3. Save the markup and check the TRMNL preview before sending data.
 4. Copy the generated webhook URL from the plugin settings.
 5. Store the webhook URL locally with `trmnl-agent keychain-set --account TRMNL_WEBHOOK_URL` or `TRMNL_WEBHOOK_URL`.
-6. Send only `examples/sample-payload.json` until the device renders correctly.
+6. Send only synthetic sample data until the device renders correctly.
 
 The webhook URL is only for data updates. It does not configure the markup template, plugin layout, playlist assignment, or refresh interval.
 
@@ -81,6 +92,12 @@ Do not commit the webhook URL to `.env`, docs, examples, screenshots, issue bodi
 Dry-run the payload:
 
 ```bash
+trmnl-agent sample | trmnl-agent push --stdin --dry-run
+```
+
+From a local checkout, the checked-in example also works:
+
+```bash
 trmnl-agent push --merge-file examples/sample-payload.json --dry-run
 ```
 
@@ -101,7 +118,7 @@ trmnl-agent smoke-test
 After the webhook is stored:
 
 ```bash
-trmnl-agent push --merge-file examples/sample-payload.json
+trmnl-agent sample | trmnl-agent push --stdin
 ```
 
 Keep the first live push synthetic. Do not use real prompts, logs, email/calendar content, customer data, local file bodies, or private notes.

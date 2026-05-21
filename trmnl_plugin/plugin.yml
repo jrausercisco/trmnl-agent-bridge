@@ -1,0 +1,16 @@
+- keyname: webhook_url
+  field_type: copyable_webhook_url
+  name: Webhook URL
+  description: "Copy this URL into your local environment or Keychain as TRMNL_WEBHOOK_URL."
+
+- keyname: about
+  field_type: author_bio
+  name: TRMNL Agent Bridge
+  description: >
+    Local-first agent status bridge for Codex, Claude Code, scripts, CI, cron jobs,
+    and other local automation. Publishes a compact attention signal to TRMNL
+    through Private Plugin merge variables without running a hosted service.
+    See the setup guide at
+    <a href="https://github.com/jrausercisco/trmnl-agent-bridge">github.com/jrausercisco/trmnl-agent-bridge</a>.
+  category: programming,productivity
+  github_url: "https://github.com/jrausercisco/trmnl-agent-bridge"

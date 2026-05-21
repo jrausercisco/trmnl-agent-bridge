@@ -6,6 +6,7 @@ import json
 import pathlib
 import tempfile
 import unittest
+from unittest import mock
 
 from trmnl_agent_bridge.cli import main
 
@@ -21,6 +22,26 @@ class CliTests(unittest.TestCase):
         self.assertTrue(output["dry_run"])
         self.assertEqual(output["request_body"]["merge_variables"]["schema_version"], 1)
         self.assertEqual(output["request_body"]["merge_variables"]["state"], "ACTION")
+
+    def test_sample_outputs_payload_that_can_push_from_stdin(self) -> None:
+        sample_stdout = io.StringIO()
+        with contextlib.redirect_stdout(sample_stdout):
+            sample_code = main(["sample", "--source", "claude", "--state", "WATCH"])
+
+        self.assertEqual(sample_code, 0)
+        sample_payload = json.loads(sample_stdout.getvalue())
+        self.assertEqual(sample_payload["source"], "claude")
+        self.assertEqual(sample_payload["state"], "WATCH")
+
+        push_stdout = io.StringIO()
+        with mock.patch("sys.stdin", io.StringIO(json.dumps(sample_payload))):
+            with contextlib.redirect_stdout(push_stdout):
+                push_code = main(["push", "--stdin", "--dry-run"])
+
+        self.assertEqual(push_code, 0)
+        output = json.loads(push_stdout.getvalue())
+        self.assertEqual(output["request_body"]["merge_variables"]["source"], "claude")
+        self.assertEqual(output["request_body"]["merge_variables"]["state"], "WATCH")
 
     def test_preview_with_sample_payload(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

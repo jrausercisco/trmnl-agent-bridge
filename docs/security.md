@@ -46,7 +46,7 @@ Preferred credential sources:
 2. Environment variables for shell sessions.
 3. macOS Keychain for durable local use.
 
-The CLI redacts credential values in status output. Do not paste full credential values into bug reports, screenshots, comments, or logs.
+The CLI redacts credential values in status output as `<set>` or `<missing>` and does not print credential prefixes or suffixes. Do not paste full credential values into bug reports, screenshots, comments, or logs.
 
 ## Repository Hygiene
 

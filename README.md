@@ -13,6 +13,7 @@ Publish compact local agent status snapshots to TRMNL Private Plugin webhooks.
 - Renders a local 800x480 HTML preview.
 - Runs dry and live smoke tests.
 - Ships Codex and Claude Code skills for setup, status publishing, and smoke tests.
+- Includes TRMNL recipe packaging files for full, half, and quadrant layout variants.
 
 ## Install
 
@@ -34,6 +35,7 @@ Check the CLI:
 
 ```bash
 trmnl-agent status
+trmnl-agent sample | trmnl-agent push --stdin --dry-run
 ```
 
 The deprecated `trmnl-codex` alias is kept for early local experiments. New docs and examples use `trmnl-agent`.
@@ -41,6 +43,12 @@ The deprecated `trmnl-codex` alias is kept for early local experiments. New docs
 ## Quick Start
 
 Validate the synthetic sample without sending anything:
+
+```bash
+trmnl-agent sample | trmnl-agent push --stdin --dry-run
+```
+
+From a local checkout, you can also validate the checked-in example payload:
 
 ```bash
 trmnl-agent push --merge-file examples/sample-payload.json --dry-run
@@ -81,10 +89,12 @@ Do not copy from a browser-rendered view of the HTML file; that strips the marku
 6. Push only synthetic data first:
 
 ```bash
-trmnl-agent push --merge-file examples/sample-payload.json
+trmnl-agent sample | trmnl-agent push --stdin
 ```
 
 See `docs/private-plugin-setup.md` for the full checklist.
+
+The canonical single-template setup uses `templates/agent-status.liquid.html`. The `trmnl_plugin/` directory contains the same full layout plus recipe packaging files for TRMNL Recipe Gallery style submission or manual setup across full, half vertical, half horizontal, and quadrant display sizes.
 
 ## Agent Plugins
 
@@ -174,6 +184,7 @@ trmnl-agent-bridge/
   src/trmnl_agent_bridge/
   schemas/agent-status.v1.schema.json
   templates/agent-status.liquid.html
+  trmnl_plugin/
   examples/
   plugins/trmnl-agent-bridge/
   plugins/claude/trmnl-agent-bridge/

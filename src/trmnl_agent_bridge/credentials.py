@@ -79,6 +79,4 @@ def redact_secret(value: str | None) -> str:
     """Return a stable redacted representation without leaking the full value."""
     if not value:
         return "<missing>"
-    if len(value) <= 8:
-        return "<set>"
-    return f"{value[:4]}...{value[-4:]}"
+    return "<set>"

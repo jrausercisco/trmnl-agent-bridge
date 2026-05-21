@@ -12,6 +12,7 @@ scan_paths=(
   "$root/examples"
   "$root/plugins"
   "$root/templates"
+  "$root/trmnl_plugin"
   "$root/src"
   "$root/schemas"
   "$root/scripts"

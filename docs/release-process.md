@@ -26,7 +26,7 @@ This validates:
 
 ## Live Synthetic TRMNL Gate
 
-Before tagging `v0.1.0`, run a live test against a TRMNL Private Plugin using only synthetic data:
+Before tagging any public release, run a live test against a TRMNL Private Plugin using only synthetic data:
 
 ```bash
 trmnl-agent push --merge-file examples/sample-payload.json
@@ -48,7 +48,7 @@ Do not save or commit response JSON or screen images unless they contain only sy
 4. Create the public GitHub repository.
 5. Push the initial main branch.
 6. Add GitHub topics: `trmnl`, `codex`, `claude-code`, `agent-skills`, `private-plugin`, `e-ink`, `webhooks`.
-7. Tag `v0.1.0` only after validation and the live synthetic TRMNL gate pass.
+7. Tag the release only after validation and the live synthetic TRMNL gate pass.
 8. Write release notes with install, setup, safety, and known-limitations sections.
 
 ## Known Pre-Launch Blockers

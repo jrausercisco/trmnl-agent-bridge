@@ -1,0 +1,49 @@
+<div class="layout layout--col gap--small">
+  <div class="item">
+    <div class="meta"></div>
+    <div class="content">
+      <span class="label label--underline">{{ title | default: "AGENT NOW" }}</span>
+      <span class="title title--large">{{ state | default: "WATCH" }}</span>
+      <span class="description">{{ updated | default: "not updated" }}</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="meta"></div>
+    <div class="content">
+      <span class="label">CURRENT STATUS</span>
+      <span class="title">{{ headline | default: "Waiting for the next agent update" }}</span>
+      <span class="description">{{ detail | default: "No current status has been pushed." }}</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="meta"></div>
+    <div class="content">
+      <span class="label">NEXT</span>
+      <span class="description">{{ next | default: "Idle" }}</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="meta"></div>
+    <div class="content">
+      <span class="label">SIGNALS</span>
+      {% if signals %}
+        {% for signal in signals limit: 3 %}
+          <span class="description">{{ signal }}</span>
+        {% endfor %}
+      {% else %}
+        <span class="description">No signals yet</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="meta"></div>
+    <div class="content">
+      <span class="label">{{ source | default: "agent" }}</span>
+      <span class="description">{{ health | default: "Bridge not checked" }}</span>
+    </div>
+  </div>
+</div>
