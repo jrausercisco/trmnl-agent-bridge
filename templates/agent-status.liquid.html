@@ -1,4 +1,4 @@
-<div class="layout layout--col gap--large">
+<div class="layout layout--col gap--medium">
   <div class="grid grid--cols-2">
     <div class="item">
       <div class="meta"></div>
@@ -16,46 +16,54 @@
     </div>
   </div>
 
-  <div class="item">
-    <div class="meta"></div>
-    <div class="content">
-      <span class="label">CURRENT STATUS</span>
-      <span class="title">{{ headline | default: "Waiting for the next agent update" }}</span>
-      <span class="description">{{ detail | default: "No current status has been pushed." }}</span>
-    </div>
-  </div>
-
-  <div class="item">
-    <div class="meta"></div>
-    <div class="content">
-      <span class="label">NEXT</span>
-      <span class="description">{{ next | default: "Idle" }}</span>
-    </div>
-  </div>
-
-  {% if signals %}
-    <div class="grid grid--cols-2">
-      {% for signal in signals limit: 4 %}
-        <div class="item item--center">
-          <div class="content">
-            <span class="description">{{ signal }}</span>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div class="item item--center">
+  <div class="grid grid--cols-2">
+    <div class="item">
+      <div class="meta"></div>
       <div class="content">
-        <span class="description">No signals yet</span>
+        <span class="label">CURRENT STATUS</span>
+        <span class="title">{{ headline | default: "Waiting for the next agent update" }}</span>
+        <span class="description">{{ detail | default: "No current status has been pushed." }}</span>
       </div>
     </div>
-  {% endif %}
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="label">NEXT</span>
+        <span class="description">{{ next | default: "Idle" }}</span>
+      </div>
+    </div>
+  </div>
 
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label">{{ source | default: "agent" }}</span>
-      <span class="description">{{ health | default: "Bridge not checked" }}</span>
+      <span class="label">SIGNALS</span>
+      {% if signals %}
+        <div class="grid grid--cols-2">
+          {% for signal in signals limit: 4 %}
+            <span class="description">{{ signal }}</span>
+          {% endfor %}
+        </div>
+      {% else %}
+        <span class="description">No signals yet</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="grid grid--cols-2">
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="label">SOURCE</span>
+        <span class="description">{{ source | default: "agent" }}</span>
+      </div>
+    </div>
+    <div class="item">
+      <div class="meta"></div>
+      <div class="content">
+        <span class="label">HEALTH</span>
+        <span class="description">{{ health | default: "Bridge not checked" }}</span>
+      </div>
     </div>
   </div>
 </div>
