@@ -53,6 +53,19 @@ class DocumentationTests(unittest.TestCase):
             for item in stale:
                 self.assertNotIn(item, text, str(path))
 
+    def test_private_plugin_setup_documents_webhook_pitfalls(self) -> None:
+        text = (ROOT / "docs/private-plugin-setup.md").read_text(encoding="utf-8")
+
+        for expected in (
+            "First Webhook Checklist",
+            "Common Setup Pitfalls",
+            "Private Plugin strategy is `Webhook`",
+            "pbcopy < templates/agent-status.liquid.html",
+            "trmnl-agent keychain-set --account TRMNL_WEBHOOK_URL",
+            "The webhook URL is only for data updates.",
+        ):
+            self.assertIn(expected, text)
+
 
 if __name__ == "__main__":
     unittest.main()
