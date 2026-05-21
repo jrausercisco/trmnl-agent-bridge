@@ -522,7 +522,7 @@ Implemented:
 
 ### Phase 7: Public GitHub Launch
 
-Status: public repo created, hosted validation passed, and live synthetic TRMNL gate passed on 2026-05-21; `v0.1.0` tag/release in progress.
+Status: complete for `v0.1.0`; public repo, hosted validation, live synthetic TRMNL gate, tag, and GitHub release completed on 2026-05-21.
 
 Deliverables:
 
@@ -550,10 +550,9 @@ Implemented:
 - Stored the TRMNL Private Plugin webhook in macOS Keychain outside the repo.
 - Ran `trmnl-agent push --merge-file examples/sample-payload.json`; the synthetic push returned HTTP 200.
 - Ran `trmnl-agent smoke-test --push --fetch-screen --compare-screen --wait-seconds 30`; current-screen fetch succeeded and the screen image hash changed.
-
-Remaining:
-
-- Create and publish the `v0.1.0` tag and GitHub release.
+- Bumped the package and user agent version to `0.1.0`.
+- Created and pushed the annotated `v0.1.0` tag.
+- Published the GitHub release at `https://github.com/jrausercisco/trmnl-agent-bridge/releases/tag/v0.1.0`.
 
 ### Phase 8: Community Distribution
 
@@ -643,8 +642,8 @@ Use generated screenshots only with synthetic data.
 - [x] Secret scan passed locally.
 - [x] CI passed on GitHub.
 - [x] Release notes drafted.
-- [ ] `v0.1.0` tag created.
-- [ ] Public repo shared.
+- [x] `v0.1.0` tag created.
+- [x] Public repo shared.
 - [ ] Community feedback issue opened.
 
 ## Open Decisions
@@ -655,4 +654,4 @@ Use generated screenshots only with synthetic data.
 
 ## Recommended Next Step
 
-Finish Phase 7 by tagging `v0.1.0`, pushing the tag, and creating the GitHub release from `docs/release-notes-v0.1.0.md`.
+Proceed to Phase 8 community distribution: share the release in TRMNL/Codex/Claude channels, ask for feedback on install friction, and capture any issues in GitHub.

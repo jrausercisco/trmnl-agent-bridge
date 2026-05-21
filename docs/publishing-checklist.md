@@ -25,3 +25,4 @@ Use this checklist before making the repository public.
 - [x] Verify GitHub-hosted Claude marketplace add and install flow.
 - [x] Draft `v0.1.0` release notes.
 - [x] Tag the first release only after a real CLI smoke test passes.
+- [x] Publish the `v0.1.0` GitHub release.

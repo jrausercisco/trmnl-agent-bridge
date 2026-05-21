@@ -66,3 +66,4 @@ Do not save or commit response JSON or screen images unless they contain only sy
 - Live synthetic TRMNL Private Plugin push returned HTTP 200.
 - Live smoke test with current-screen fetch and screen comparison passed.
 - `v0.1.0` release notes are in `docs/release-notes-v0.1.0.md`.
+- `v0.1.0` tag and GitHub release published at `https://github.com/jrausercisco/trmnl-agent-bridge/releases/tag/v0.1.0`.
