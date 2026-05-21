@@ -15,6 +15,7 @@ test -f docs/release-process.md
 test -f docs/release-notes-v0.1.0.md
 test -f docs/release-notes-v0.1.1.md
 test -f docs/release-notes-v0.1.2.md
+test -f docs/launch-post.md
 test -f docs/codex-plugin.md
 test -f docs/claude-plugin.md
 test -f docs/assets/synthetic-preview.svg
