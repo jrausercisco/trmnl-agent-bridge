@@ -105,6 +105,9 @@ Render a local preview:
 
 ```bash
 trmnl-agent preview --merge-file examples/sample-payload.json
+trmnl-agent preview --layout half-horizontal --merge-file examples/sample-payload.json
+trmnl-agent preview --layout half-vertical --merge-file examples/sample-payload.json
+trmnl-agent preview --layout quadrant --merge-file examples/sample-payload.json
 ```
 
 Run the dry smoke test:

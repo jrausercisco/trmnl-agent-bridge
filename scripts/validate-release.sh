@@ -14,8 +14,10 @@ test -f docs/payload-contract.md
 test -f docs/release-process.md
 test -f docs/release-notes-v0.1.0.md
 test -f docs/release-notes-v0.1.1.md
+test -f docs/release-notes-v0.1.2.md
 test -f docs/codex-plugin.md
 test -f docs/claude-plugin.md
+test -f docs/assets/synthetic-preview.svg
 test -f trmnl_plugin/plugin.yml
 test -f trmnl_plugin/icon.svg
 test -f trmnl_plugin/markup_full.html
@@ -25,6 +27,10 @@ test -f trmnl_plugin/markup_quadrant.html
 
 PYTHONPATH=src python3 -m unittest discover -s tests
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli sample | PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --stdin --dry-run >/dev/null
+PYTHONPATH=src python3 -m trmnl_agent_bridge.cli preview --layout full --merge-file examples/sample-payload.json --output /tmp/trmnl-agent-full-preview.html >/dev/null
+PYTHONPATH=src python3 -m trmnl_agent_bridge.cli preview --layout half-horizontal --merge-file examples/sample-payload.json --output /tmp/trmnl-agent-half-horizontal-preview.html >/dev/null
+PYTHONPATH=src python3 -m trmnl_agent_bridge.cli preview --layout half-vertical --merge-file examples/sample-payload.json --output /tmp/trmnl-agent-half-vertical-preview.html >/dev/null
+PYTHONPATH=src python3 -m trmnl_agent_bridge.cli preview --layout quadrant --merge-file examples/sample-payload.json --output /tmp/trmnl-agent-quadrant-preview.html >/dev/null
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --merge-file examples/sample-payload.json --dry-run >/dev/null
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --merge-file examples/sample-claude-status.json --dry-run >/dev/null
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli smoke-test >/dev/null

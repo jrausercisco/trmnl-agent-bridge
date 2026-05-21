@@ -55,6 +55,39 @@ class CliTests(unittest.TestCase):
             self.assertEqual(output["preview_path"], str(preview_path))
             self.assertIn("Review failed test run", preview_path.read_text(encoding="utf-8"))
 
+    def test_preview_supports_recipe_layout_sizes(self) -> None:
+        expected = {
+            "full": (800, 480),
+            "half-horizontal": (800, 240),
+            "half-vertical": (400, 480),
+            "quadrant": (400, 240),
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            for layout, (width, height) in expected.items():
+                preview_path = pathlib.Path(tmp) / f"{layout}.html"
+                stdout = io.StringIO()
+                with contextlib.redirect_stdout(stdout):
+                    code = main(
+                        [
+                            "preview",
+                            "--layout",
+                            layout,
+                            "--merge-file",
+                            "examples/sample-payload.json",
+                            "--output",
+                            str(preview_path),
+                        ]
+                    )
+
+                self.assertEqual(code, 0, layout)
+                output = json.loads(stdout.getvalue())
+                self.assertEqual(output["layout"], layout)
+                self.assertEqual(output["width"], width)
+                self.assertEqual(output["height"], height)
+                text = preview_path.read_text(encoding="utf-8")
+                self.assertIn(f"width: {width}px;", text)
+                self.assertIn(f"height: {height}px;", text)
+
     def test_smoke_test_dry_mode_without_credentials(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             stdout = io.StringIO()
@@ -66,6 +99,7 @@ class CliTests(unittest.TestCase):
             self.assertEqual(output["mode"], "dry")
             self.assertEqual(output["issues"], [])
             self.assertFalse(output["push"]["attempted"])
+            self.assertEqual(output["preview_layout"], "full")
 
 
 if __name__ == "__main__":

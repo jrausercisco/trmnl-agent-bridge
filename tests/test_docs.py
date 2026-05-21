@@ -18,7 +18,9 @@ class DocumentationTests(unittest.TestCase):
             "docs/release-process.md",
             "docs/release-notes-v0.1.0.md",
             "docs/release-notes-v0.1.1.md",
+            "docs/release-notes-v0.1.2.md",
             "docs/security.md",
+            "docs/assets/synthetic-preview.svg",
         ]
 
         for relative in required:
@@ -45,6 +47,14 @@ class DocumentationTests(unittest.TestCase):
             for item in forbidden:
                 self.assertNotIn(item, text, str(path))
 
+    def test_readme_has_demo_image_and_positioning_faq(self) -> None:
+        text = (ROOT / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("docs/assets/synthetic-preview.svg", text)
+        self.assertIn("Is this a Claude usage dashboard?", text)
+        self.assertIn("Does it read prompts or local session files?", text)
+        self.assertIn("Why include recipe layout files?", text)
+
     def test_scaffold_language_removed_from_launch_docs(self) -> None:
         docs = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md"))]
         stale = ("public-ready staging scaffold", "has not been ported", "planned for later phases")
@@ -66,6 +76,18 @@ class DocumentationTests(unittest.TestCase):
             "The webhook URL is only for data updates.",
         ):
             self.assertIn(expected, text)
+
+    def test_plugin_setup_skills_use_installed_user_first_run_flow(self) -> None:
+        setup_paths = [
+            ROOT / "plugins" / "trmnl-agent-bridge" / "skills" / "setup" / "SKILL.md",
+            ROOT / "plugins" / "claude" / "trmnl-agent-bridge" / "skills" / "setup" / "SKILL.md",
+        ]
+
+        for path in setup_paths:
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("choose the `Webhook` data strategy", text)
+            self.assertIn("trmnl-agent sample --source", text)
+            self.assertIn("trmnl_plugin/markup_full.html", text)
 
 
 if __name__ == "__main__":

@@ -21,8 +21,8 @@ If the package is being used from a local checkout, run from the repository root
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli status
 ```
 
-2. Have the user create a TRMNL Private Plugin with webhook-based updates.
-3. Have the user paste `templates/agent-status.liquid.html` into the TRMNL plugin markup editor.
+2. Have the user create a TRMNL Private Plugin and choose the `Webhook` data strategy.
+3. Have the user paste `templates/agent-status.liquid.html` into the TRMNL plugin markup editor. For recipe-style setup, use `trmnl_plugin/markup_full.html`, `trmnl_plugin/markup_half_horizontal.html`, `trmnl_plugin/markup_half_vertical.html`, and `trmnl_plugin/markup_quadrant.html`.
 4. Store the webhook URL in an environment variable or macOS Keychain:
 
 ```bash
@@ -32,14 +32,16 @@ trmnl-agent keychain-set --account TRMNL_WEBHOOK_URL
 5. Validate with a dry-run synthetic payload:
 
 ```bash
-trmnl-agent push --merge-file examples/sample-payload.json --dry-run
+trmnl-agent sample --source codex | trmnl-agent push --stdin --dry-run
 ```
 
 6. Only after the dry run succeeds, push a synthetic payload:
 
 ```bash
-trmnl-agent push --merge-file examples/sample-payload.json
+trmnl-agent sample --source codex | trmnl-agent push --stdin
 ```
+
+From a repository checkout, `examples/sample-payload.json` and `examples/sample-codex-status.json` can also be used for local validation.
 
 ## Safety
 

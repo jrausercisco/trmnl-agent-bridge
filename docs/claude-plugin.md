@@ -35,6 +35,7 @@ HOME="$tmp_home" claude plugin install trmnl-agent-bridge@trmnl-agent-bridge --s
 From the repository root:
 
 ```bash
+PYTHONPATH=src python3 -m trmnl_agent_bridge.cli sample --source claude | PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --stdin --dry-run
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --merge-file examples/sample-claude-status.json --dry-run
 ```
 

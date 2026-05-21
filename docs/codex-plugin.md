@@ -27,6 +27,7 @@ The expected result is that Codex adds the `trmnl-agent-bridge` marketplace from
 From the repository root:
 
 ```bash
+PYTHONPATH=src python3 -m trmnl_agent_bridge.cli sample --source codex | PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --stdin --dry-run
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --merge-file examples/sample-codex-status.json --dry-run
 ```
 

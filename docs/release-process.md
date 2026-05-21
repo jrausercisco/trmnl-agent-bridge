@@ -29,7 +29,7 @@ This validates:
 Before tagging any public release, run a live test against a TRMNL Private Plugin using only synthetic data:
 
 ```bash
-trmnl-agent push --merge-file examples/sample-payload.json
+trmnl-agent sample | trmnl-agent push --stdin
 ```
 
 When device API credentials are configured, also run:

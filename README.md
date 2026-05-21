@@ -4,6 +4,8 @@ Publish compact local agent status snapshots to TRMNL Private Plugin webhooks.
 
 `trmnl-agent-bridge` is a local-first CLI and plugin bundle for sending calm status updates from Codex, Claude Code, scripts, CI, cron jobs, and other local automation to a TRMNL e-ink display. It does not run a hosted service and it does not need access to private prompts, logs, notes, mail, or calendar content.
 
+![Synthetic TRMNL Agent Bridge preview](docs/assets/synthetic-preview.svg)
+
 ## What It Does
 
 - Validates a small `agent-status.v1` JSON payload.
@@ -58,6 +60,7 @@ Render a local preview:
 
 ```bash
 trmnl-agent preview --merge-file examples/sample-payload.json
+trmnl-agent preview --layout quadrant --merge-file examples/sample-payload.json
 ```
 
 Run the dry smoke test:
@@ -160,6 +163,20 @@ Run the release validation script:
 ```
 
 It validates JSON files, runs unit tests, dry-runs the CLI, and runs Claude plugin validation when `claude` is installed.
+
+## FAQ
+
+### Is this a Claude usage dashboard?
+
+No. Claude usage dashboards usually scrape Claude Code usage or parse local Claude session files to show cost, token, or rate-limit telemetry. This bridge publishes a small current-status signal from any local producer, such as Codex, Claude Code, scripts, CI, cron jobs, or personal automation.
+
+### Does it read prompts or local session files?
+
+No. The core bridge validates and sends only the payload you provide. The included examples are synthetic, and the agent skills instruct Codex and Claude Code to avoid prompts, logs, file bodies, customer data, mail, calendar content, and secrets.
+
+### Why include recipe layout files?
+
+The `trmnl_plugin/` directory makes manual Private Plugin setup and potential TRMNL Recipe Gallery submission easier. The CLI still works with a plain Private Plugin webhook and the single template in `templates/agent-status.liquid.html`.
 
 ## Security
 

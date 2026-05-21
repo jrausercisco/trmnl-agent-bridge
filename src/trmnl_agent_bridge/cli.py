@@ -29,7 +29,7 @@ from .payloads import (
     normalize_payload,
     payload_size_bytes,
 )
-from .preview import render_preview
+from .preview import LAYOUT_SIZES, render_preview
 from .trmnl import (
     TRMNL_BASE_URL,
     TrmnlError,
@@ -180,12 +180,16 @@ def command_preview(args: argparse.Namespace) -> int:
     state_dir = _ensure_state_dir(args)
     payload = _load_payload_from_args(args, allow_default=True)
     destination = pathlib.Path(args.output).expanduser() if args.output else state_dir / "agent-status-preview.html"
-    preview_path = render_preview(payload, destination)
+    preview_path = render_preview(payload, destination, layout=args.layout)
+    width, height = LAYOUT_SIZES[args.layout]
     print(
         json.dumps(
             {
                 "ok": True,
                 "preview_path": str(preview_path),
+                "layout": args.layout,
+                "width": width,
+                "height": height,
                 "payload_bytes": payload_size_bytes(payload),
                 "state": payload.get("state"),
                 "headline": payload.get("headline"),
@@ -222,7 +226,11 @@ def command_current_screen(args: argparse.Namespace) -> int:
 def command_smoke_test(args: argparse.Namespace) -> int:
     state_dir = _ensure_state_dir(args)
     payload = _load_payload_from_args(args, allow_default=True)
-    preview_path = render_preview(payload, pathlib.Path(args.output).expanduser() if args.output else state_dir / "agent-status-preview.html")
+    preview_path = render_preview(
+        payload,
+        pathlib.Path(args.output).expanduser() if args.output else state_dir / "agent-status-preview.html",
+        layout=args.layout,
+    )
     webhook = resolve_credential(args.webhook_url, "TRMNL_WEBHOOK_URL")
     access_token = resolve_credential(args.access_token, "TRMNL_ACCESS_TOKEN")
     device_id = resolve_credential(args.device_id, "TRMNL_DEVICE_ID")
@@ -241,6 +249,7 @@ def command_smoke_test(args: argparse.Namespace) -> int:
         "mode": "live" if args.push else "dry",
         "issues": issues,
         "preview_path": str(preview_path),
+        "preview_layout": args.layout,
         "payload_bytes": payload_bytes,
         "payload_limit_bytes": args.payload_limit_bytes,
         "state": payload.get("state"),
@@ -337,9 +346,10 @@ def build_parser() -> argparse.ArgumentParser:
     push.add_argument("--limit-per-hour", type=int, default=DEFAULT_PUSH_LIMIT_PER_HOUR)
     push.set_defaults(func=command_push)
 
-    preview = subparsers.add_parser("preview", help="Render a local 800x480 HTML preview.")
+    preview = subparsers.add_parser("preview", help="Render a local TRMNL-sized HTML preview.")
     _add_payload_args(preview)
     preview.add_argument("--output", help="Preview HTML output path.")
+    preview.add_argument("--layout", default="full", choices=sorted(LAYOUT_SIZES), help="TRMNL layout size to preview.")
     preview.set_defaults(func=command_preview)
 
     current_screen = subparsers.add_parser("current-screen", help="Fetch current TRMNL screen metadata.")
@@ -349,6 +359,7 @@ def build_parser() -> argparse.ArgumentParser:
     smoke = subparsers.add_parser("smoke-test", help="Dry-run or live-test payload, preview, push, and screen fetch.")
     _add_payload_args(smoke)
     smoke.add_argument("--output", help="Preview HTML output path.")
+    smoke.add_argument("--layout", default="full", choices=sorted(LAYOUT_SIZES), help="TRMNL layout size to preview.")
     smoke.add_argument("--push", action="store_true", help="Send the payload when TRMNL_WEBHOOK_URL is available.")
     smoke.add_argument("--fetch-screen", action="store_true", help="Fetch current-screen metadata.")
     smoke.add_argument("--compare-screen", action="store_true", help="Hash before/after screen images around a live push.")
