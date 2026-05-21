@@ -62,13 +62,21 @@ trmnl-agent smoke-test
 
 1. Create a TRMNL Private Plugin.
 2. Choose the webhook data strategy.
-3. Paste `templates/agent-status.liquid.html` into the TRMNL markup editor.
+3. Paste the raw contents of `templates/agent-status.liquid.html` into the TRMNL markup editor.
 4. Save the plugin so TRMNL generates a webhook URL.
 5. Store the webhook URL outside the repo:
 
 ```bash
 trmnl-agent keychain-set --account TRMNL_WEBHOOK_URL
 ```
+
+If you are copying from a terminal on macOS, this puts the raw markup on your clipboard:
+
+```bash
+pbcopy < templates/agent-status.liquid.html
+```
+
+Do not copy from a browser-rendered view of the HTML file; that strips the markup tags and leaves only inline Liquid text.
 
 6. Push only synthetic data first:
 

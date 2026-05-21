@@ -13,11 +13,19 @@ Use this guide to connect `trmnl-agent` to a TRMNL Private Plugin webhook.
 1. Open the TRMNL web app.
 2. Create a Private Plugin.
 3. Choose the webhook data retrieval strategy.
-4. Paste `templates/agent-status.liquid.html` into the markup editor.
+4. Paste the raw contents of `templates/agent-status.liquid.html` into the markup editor.
 5. Save the plugin so TRMNL generates the webhook URL.
 6. Assign the plugin to the target device playlist.
 
 TRMNL expects webhook updates under a top-level `merge_variables` object. The CLI creates that wrapper for you.
+
+On macOS, copy the raw markup from the repository checkout with:
+
+```bash
+pbcopy < templates/agent-status.liquid.html
+```
+
+Avoid copying from a browser-rendered preview of the `.html` file. The editor needs the markup source beginning with `<div class="layout...">`; if it starts with `{{ title ... }}`, the HTML tags were stripped before paste.
 
 ## Store The Webhook Secret
 

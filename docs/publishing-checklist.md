@@ -26,3 +26,4 @@ Use this checklist before making the repository public.
 - [x] Draft `v0.1.0` release notes.
 - [x] Tag the first release only after a real CLI smoke test passes.
 - [x] Publish the `v0.1.0` GitHub release.
+- [x] Harden the Private Plugin markup template after first editor paste feedback.

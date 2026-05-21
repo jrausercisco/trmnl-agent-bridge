@@ -581,6 +581,14 @@ Candidates:
 - Optional TRMNL Recipe submission.
 - Optional hosted Third Party Plugin only if demand justifies it.
 
+### Post-Launch Fixes
+
+2026-05-21:
+
+- Replaced the initial standalone CSS-heavy `templates/agent-status.liquid.html` with TRMNL framework-native Private Plugin markup using `layout`, `grid`, `item`, `label`, `title`, and `description` classes.
+- Added tests to ensure the template starts with raw HTML markup and does not depend on `<style>`, `<html>`, or `<body>` tags.
+- Updated setup docs to instruct users to paste raw markup source, including the macOS `pbcopy < templates/agent-status.liquid.html` flow, and to avoid copying from a browser-rendered HTML preview.
+
 ## Test Plan
 
 Core tests:
