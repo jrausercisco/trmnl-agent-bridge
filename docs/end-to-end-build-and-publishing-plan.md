@@ -522,7 +522,7 @@ Implemented:
 
 ### Phase 7: Public GitHub Launch
 
-Status: public repo created and hosted validation passed on 2026-05-21; `v0.1.0` tag/release blocked on live synthetic TRMNL webhook push.
+Status: public repo created, hosted validation passed, and live synthetic TRMNL gate passed on 2026-05-21; `v0.1.0` tag/release in progress.
 
 Deliverables:
 
@@ -546,12 +546,14 @@ Implemented:
 - Confirmed GitHub Actions CI passed on the hosted clean checkout.
 - Verified GitHub-hosted Codex marketplace add from an isolated temporary `CODEX_HOME`.
 - Verified GitHub-hosted Claude marketplace add and local plugin install from an isolated temporary `HOME`.
-- Added draft release notes at `docs/release-notes-v0.1.0.md`.
+- Added `docs/release-notes-v0.1.0.md`.
+- Stored the TRMNL Private Plugin webhook in macOS Keychain outside the repo.
+- Ran `trmnl-agent push --merge-file examples/sample-payload.json`; the synthetic push returned HTTP 200.
+- Ran `trmnl-agent smoke-test --push --fetch-screen --compare-screen --wait-seconds 30`; current-screen fetch succeeded and the screen image hash changed.
 
-Blocked:
+Remaining:
 
-- `TRMNL_WEBHOOK_URL` is not configured, so the live synthetic TRMNL Private Plugin push has not run.
-- `v0.1.0` tag and GitHub release were intentionally not created.
+- Create and publish the `v0.1.0` tag and GitHub release.
 
 ### Phase 8: Community Distribution
 
@@ -635,11 +637,11 @@ Use generated screenshots only with synthetic data.
 - [x] README explains Codex and Claude support equally.
 - [x] CLI MVP implemented and tested.
 - [x] Launch-ready documentation flow added.
-- [ ] TRMNL Private Plugin setup tested with synthetic payload.
+- [x] TRMNL Private Plugin setup tested with synthetic payload.
 - [x] Codex plugin validated locally.
 - [x] Claude plugin validated locally.
 - [x] Secret scan passed locally.
-- [ ] CI passed on GitHub.
+- [x] CI passed on GitHub.
 - [x] Release notes drafted.
 - [ ] `v0.1.0` tag created.
 - [ ] Public repo shared.
@@ -653,9 +655,4 @@ Use generated screenshots only with synthetic data.
 
 ## Recommended Next Step
 
-Complete the live synthetic TRMNL Private Plugin gate, then finish Phase 7:
-
-1. Store or pass `TRMNL_WEBHOOK_URL`.
-2. Run `trmnl-agent push --merge-file examples/sample-payload.json`.
-3. If device API credentials are available, run `trmnl-agent smoke-test --push --fetch-screen --compare-screen --wait-seconds 30`.
-4. Tag `v0.1.0` and create the GitHub release from `docs/release-notes-v0.1.0.md`.
+Finish Phase 7 by tagging `v0.1.0`, pushing the tag, and creating the GitHub release from `docs/release-notes-v0.1.0.md`.

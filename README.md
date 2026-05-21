@@ -180,11 +180,11 @@ trmnl-agent-bridge/
 
 ## Roadmap
 
-- Run a live synthetic TRMNL Private Plugin push before first public release.
-- Publish the GitHub repository and tag `v0.1.0`.
-- Confirm GitHub Actions CI passes on the hosted clean checkout.
-- Verify GitHub-hosted Codex and Claude marketplace install flows.
 - Add GitHub Action and cron examples.
+- Add packaged binary releases.
+- Add Homebrew and PyPI distribution paths.
+- Add Windows Credential Manager and Linux Secret Service support.
+- Consider optional Codex and Claude hook examples that remain disabled by default.
 
 ## Non-Goals
 

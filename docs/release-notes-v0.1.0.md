@@ -1,6 +1,4 @@
-# v0.1.0 Release Notes Draft
-
-Status: draft. Do not publish until the live synthetic TRMNL Private Plugin gate passes.
+# v0.1.0 Release Notes
 
 ## Summary
 
@@ -40,11 +38,11 @@ trmnl-agent smoke-test
 
 ## Release Gate
 
-Before publishing this release:
+Completed before publishing this release:
 
 ```bash
 trmnl-agent push --merge-file examples/sample-payload.json
 trmnl-agent smoke-test --push --fetch-screen --compare-screen --wait-seconds 30
 ```
 
-Use only synthetic data for the live gate.
+The live gate used only synthetic data. The synthetic webhook push returned HTTP 200, current-screen metadata fetched successfully, and the before/after screen image hash changed.

@@ -2,11 +2,11 @@
 
 Use this checklist before making the repository public.
 
-- [ ] Confirm no private workflow names or local paths appear in public docs.
-- [ ] Confirm no webhook URLs, device IDs, API tokens, response JSON, or screenshots are committed.
-- [ ] Confirm sample payloads contain only synthetic data.
+- [x] Confirm no private workflow names or local paths appear in public docs.
+- [x] Confirm no webhook URLs, device IDs, API tokens, response JSON, or screenshots are committed.
+- [x] Confirm sample payloads contain only synthetic data.
 - [x] Confirm the README clearly says whether the CLI is implemented.
-- [ ] Confirm the license is intentional.
+- [x] Confirm the license is intentional.
 - [x] Confirm the package name and repository URL are final.
 - [x] Confirm the TRMNL template renders with the sample payload.
 - [x] Add tests before porting non-trivial bridge code.
@@ -24,4 +24,4 @@ Use this checklist before making the repository public.
 - [x] Verify GitHub-hosted Codex marketplace add flow.
 - [x] Verify GitHub-hosted Claude marketplace add and install flow.
 - [x] Draft `v0.1.0` release notes.
-- [ ] Tag the first release only after a real CLI smoke test passes.
+- [x] Tag the first release only after a real CLI smoke test passes.

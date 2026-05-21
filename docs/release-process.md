@@ -1,6 +1,6 @@
 # Release Process
 
-This project is not ready for a public release until the live synthetic TRMNL push and hosted CI checks are complete.
+This project requires a live synthetic TRMNL push and hosted CI checks before each public release.
 
 ## Pre-Release Checks
 
@@ -53,8 +53,7 @@ Do not save or commit response JSON or screen images unless they contain only sy
 
 ## Known Pre-Launch Blockers
 
-- Live synthetic TRMNL Private Plugin push has not been run in this public repo.
-- `v0.1.0` has not been tagged or published.
+- None for `v0.1.0`.
 
 ## Completed Launch Checks
 
@@ -64,4 +63,6 @@ Do not save or commit response JSON or screen images unless they contain only sy
 - GitHub topics configured.
 - GitHub-hosted Codex marketplace add verified from an isolated temporary Codex home.
 - GitHub-hosted Claude marketplace add and plugin install verified from an isolated temporary home.
-- Draft `v0.1.0` release notes are in `docs/release-notes-v0.1.0.md`.
+- Live synthetic TRMNL Private Plugin push returned HTTP 200.
+- Live smoke test with current-screen fetch and screen comparison passed.
+- `v0.1.0` release notes are in `docs/release-notes-v0.1.0.md`.
