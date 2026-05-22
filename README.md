@@ -17,6 +17,12 @@ Publish compact local agent status snapshots to TRMNL Private Plugin webhooks.
 - Ships Codex and Claude Code skills for setup, status publishing, and smoke tests.
 - Includes TRMNL recipe packaging files for full, half, and quadrant layout variants.
 
+## Why Use It?
+
+An agent can create a one-off TRMNL webhook script. This project packages the reusable hard parts around that script: payload validation, dry-run output, credential redaction, macOS Keychain storage, payload size checks, smoke tests, local preview, TRMNL recipe layouts, setup docs, and Codex/Claude Code skills with explicit privacy rules.
+
+Use it when you want a repeatable local bridge for "what needs attention now" status from agents, scripts, CI, cron jobs, or local automation. See `docs/value.md` for the longer rationale.
+
 ## Install
 
 From a local checkout:
@@ -177,6 +183,10 @@ No. The core bridge validates and sends only the payload you provide. The includ
 ### Why include recipe layout files?
 
 The `trmnl_plugin/` directory makes manual Private Plugin setup and potential TRMNL Recipe Gallery submission easier. The CLI still works with a plain Private Plugin webhook and the single template in `templates/agent-status.liquid.html`.
+
+### Why not just ask an agent to build a custom one?
+
+For a single private experiment, that may be enough. The bridge exists so users do not have to rebuild and re-audit the same setup, secret-handling, validation, preview, recipe-layout, and smoke-test mechanics for every local agent workflow.
 
 ## Security
 

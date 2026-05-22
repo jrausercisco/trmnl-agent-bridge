@@ -6,6 +6,8 @@ I published `trmnl-agent-bridge`, a local-first CLI and plugin bundle for sendin
 
 It is meant for "what needs attention now" signals from Codex, Claude Code, scripts, CI, cron jobs, or local automation. It is not a Claude usage dashboard and it does not scrape prompts, logs, session files, mail, calendar content, or private notes.
 
+An agent can create a one-off webhook script; this repo packages the reusable safety and setup work around that script: schema validation, dry-run output, credential redaction, Keychain storage, local preview, smoke tests, and TRMNL recipe layouts.
+
 Repo: https://github.com/jrausercisco/trmnl-agent-bridge
 
 Quick check:
@@ -59,6 +61,8 @@ The payload is intentionally small:
 It wraps that under TRMNL `merge_variables`, validates the shape, keeps webhook/device credentials out of the repo, and supports dry-run/live smoke tests before publishing real workflow status.
 
 This is deliberately not a Claude usage dashboard. It does not parse Claude session files or scrape local terminals. It is a generic "current agent status" bridge that can be used by Codex, Claude Code, shell scripts, CI, cron jobs, or other local producers.
+
+The value is not that an agent could not build a custom version. The value is that the common plumbing is already documented, tested, and safer to reuse: payload validation, synthetic samples, local preview, credential redaction, Keychain storage, push-rate limits, recipe layouts, and setup/publish/smoke-test skills.
 
 Repo: https://github.com/jrausercisco/trmnl-agent-bridge
 

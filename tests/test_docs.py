@@ -20,6 +20,7 @@ class DocumentationTests(unittest.TestCase):
             "docs/release-notes-v0.1.1.md",
             "docs/release-notes-v0.1.2.md",
             "docs/launch-post.md",
+            "docs/value.md",
             "docs/security.md",
             "docs/assets/synthetic-preview.svg",
         ]
@@ -35,6 +36,7 @@ class DocumentationTests(unittest.TestCase):
             "docs/codex-plugin.md",
             "docs/claude-plugin.md",
             "docs/payload-contract.md",
+            "docs/value.md",
             "docs/security.md",
         ):
             self.assertIn(expected, text)
@@ -55,6 +57,20 @@ class DocumentationTests(unittest.TestCase):
         self.assertIn("Is this a Claude usage dashboard?", text)
         self.assertIn("Does it read prompts or local session files?", text)
         self.assertIn("Why include recipe layout files?", text)
+        self.assertIn("Why Use It?", text)
+        self.assertIn("Why not just ask an agent to build a custom one?", text)
+
+    def test_value_doc_explains_reuse_over_one_off_generation(self) -> None:
+        text = (ROOT / "docs" / "value.md").read_text(encoding="utf-8")
+
+        for expected in (
+            "Why Not Just Ask An Agent To Build One?",
+            "stable payload contract",
+            "credential redaction",
+            "TRMNL recipe packaging",
+            "GitHub Actions and cron examples",
+        ):
+            self.assertIn(expected, text)
 
     def test_scaffold_language_removed_from_launch_docs(self) -> None:
         docs = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md"))]
