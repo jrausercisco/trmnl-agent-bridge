@@ -17,15 +17,21 @@ test -f docs/release-notes-v0.1.1.md
 test -f docs/release-notes-v0.1.2.md
 test -f docs/launch-post.md
 test -f docs/value.md
+test -f docs/producer-examples.md
 test -f docs/codex-plugin.md
 test -f docs/claude-plugin.md
 test -f docs/assets/synthetic-preview.svg
+test -f examples/github-actions-agent-status.yml
+test -f examples/cron-agent-status.sh
+test -x examples/cron-agent-status.sh
 test -f trmnl_plugin/plugin.yml
 test -f trmnl_plugin/icon.svg
 test -f trmnl_plugin/markup_full.html
 test -f trmnl_plugin/markup_half_horizontal.html
 test -f trmnl_plugin/markup_half_vertical.html
 test -f trmnl_plugin/markup_quadrant.html
+
+bash -n examples/cron-agent-status.sh
 
 PYTHONPATH=src python3 -m unittest discover -s tests
 PYTHONPATH=src python3 -m trmnl_agent_bridge.cli sample | PYTHONPATH=src python3 -m trmnl_agent_bridge.cli push --stdin --dry-run >/dev/null

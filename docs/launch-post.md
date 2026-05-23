@@ -25,6 +25,7 @@ What it includes:
 - dry-run, smoke-test, local preview, and optional current-screen verification
 - Codex and Claude Code setup/publish/smoke-test skills
 - TRMNL recipe packaging files for full, half-horizontal, half-vertical, and quadrant layouts
+- GitHub Actions and cron examples for producing safe status payloads
 
 I would value feedback on the setup flow and whether the `trmnl_plugin/` recipe package should be submitted or linked in the TRMNL Recipe Gallery.
 
@@ -63,6 +64,8 @@ It wraps that under TRMNL `merge_variables`, validates the shape, keeps webhook/
 This is deliberately not a Claude usage dashboard. It does not parse Claude session files or scrape local terminals. It is a generic "current agent status" bridge that can be used by Codex, Claude Code, shell scripts, CI, cron jobs, or other local producers.
 
 The value is not that an agent could not build a custom version. The value is that the common plumbing is already documented, tested, and safer to reuse: payload validation, synthetic samples, local preview, credential redaction, Keychain storage, push-rate limits, recipe layouts, and setup/publish/smoke-test skills.
+
+The repo also includes starting producer examples for GitHub Actions and cron, so users can adapt a working status emitter instead of beginning with a blank webhook script.
 
 Repo: https://github.com/jrausercisco/trmnl-agent-bridge
 

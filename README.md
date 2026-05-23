@@ -105,6 +105,15 @@ See `docs/private-plugin-setup.md` for the full checklist.
 
 The canonical single-template setup uses `templates/agent-status.liquid.html`. The `trmnl_plugin/` directory contains the same full layout plus recipe packaging files for TRMNL Recipe Gallery style submission or manual setup across full, half vertical, half horizontal, and quadrant display sizes.
 
+## Producer Examples
+
+The bridge accepts any producer that writes an `agent-status.v1` JSON payload:
+
+- GitHub Actions: `examples/github-actions-agent-status.yml`
+- cron or local scheduler: `examples/cron-agent-status.sh`
+
+Both examples publish compact status only, not logs or private content. See `docs/producer-examples.md`.
+
 ## Agent Plugins
 
 This repo contains two agent plugin bundles:
@@ -226,7 +235,7 @@ trmnl-agent-bridge/
 
 ## Roadmap
 
-- Add GitHub Action and cron examples.
+- Add more producer examples for GitLab CI, Jenkins, Buildkite, launchd, and systemd timers.
 - Add packaged binary releases.
 - Add Homebrew and PyPI distribution paths.
 - Add Windows Credential Manager and Linux Secret Service support.

@@ -54,11 +54,11 @@ Do not use it when you need a dense analytics dashboard, account-usage accountin
 
 ## How To Make It More Useful
 
-The most useful future improvements are producer examples and setup polish, not a bigger core payload.
+The most useful improvements are producer examples and setup polish, not a bigger core payload. The repo now includes GitHub Actions and cron examples that emit `agent-status.v1` without sending logs or private content.
 
 Good next additions:
 
-- GitHub Actions and cron examples that emit `agent-status.v1`.
+- More producer examples for GitLab CI, Jenkins, Buildkite, launchd, and systemd timers.
 - Disabled-by-default Codex and Claude hook examples for users who want automatic updates.
 - More TRMNL template variants for different visual densities.
 - A setup wizard that checks the webhook, template paste, and optional device API credentials in one command.

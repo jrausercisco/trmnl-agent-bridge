@@ -1,0 +1,93 @@
+name: Publish TRMNL Agent Status
+
+on:
+  workflow_dispatch:
+    inputs:
+      state:
+        description: "CLEAR, WATCH, ACTION, BLOCKED, or FAIL"
+        required: true
+        type: choice
+        default: WATCH
+        options:
+          - CLEAR
+          - WATCH
+          - ACTION
+          - BLOCKED
+          - FAIL
+      headline:
+        description: "Short status headline"
+        required: false
+        default: "Workflow status updated"
+      detail:
+        description: "One sentence of useful context"
+        required: false
+        default: "Manual workflow status was published to TRMNL."
+      next:
+        description: "What should happen next"
+        required: false
+        default: "Check the workflow run if this needs attention."
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install TRMNL Agent Bridge
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "git+https://github.com/jrausercisco/trmnl-agent-bridge.git@v0.1.2"
+
+      - name: Build status payload
+        env:
+          TRMNL_STATE: ${{ inputs.state }}
+          TRMNL_HEADLINE: ${{ inputs.headline }}
+          TRMNL_DETAIL: ${{ inputs.detail }}
+          TRMNL_NEXT: ${{ inputs.next }}
+        run: |
+          python - <<'PY' > trmnl-status.json
+          import datetime as dt
+          import json
+          import os
+
+          def clamp(value, limit):
+              text = " ".join(str(value or "").split())
+              return text[:limit]
+
+          repo = os.environ.get("GITHUB_REPOSITORY", "unknown/repo")
+          run_id = os.environ.get("GITHUB_RUN_ID", "")
+          run_url = f"https://github.com/{repo}/actions/runs/{run_id}" if run_id else ""
+          updated = dt.datetime.now(dt.timezone.utc).strftime("%H:%M UTC")
+
+          payload = {
+              "schema_version": 1,
+              "source": "github-actions",
+              "title": "AGENT NOW",
+              "state": clamp(os.environ.get("TRMNL_STATE", "WATCH"), 20).upper(),
+              "headline": clamp(os.environ.get("TRMNL_HEADLINE"), 100),
+              "detail": clamp(os.environ.get("TRMNL_DETAIL"), 180),
+              "next": clamp(os.environ.get("TRMNL_NEXT"), 120),
+              "signals": [
+                  f"Repo: {clamp(repo, 72)}",
+                  f"Branch: {clamp(os.environ.get('GITHUB_REF_NAME'), 72)}",
+                  f"Run: {clamp(os.environ.get('GITHUB_RUN_NUMBER'), 72)}",
+              ],
+              "health": "GitHub Actions producer",
+              "repo": clamp(repo, 120),
+              "branch": clamp(os.environ.get("GITHUB_REF_NAME"), 120),
+              "run_url": clamp(run_url, 200),
+              "updated": updated,
+          }
+          print(json.dumps(payload, separators=(",", ":")))
+          PY
+
+      - name: Publish to TRMNL
+        env:
+          TRMNL_WEBHOOK_URL: ${{ secrets.TRMNL_WEBHOOK_URL }}
+        run: trmnl-agent push --merge-file trmnl-status.json

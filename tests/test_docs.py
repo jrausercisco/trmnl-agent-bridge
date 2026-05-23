@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pathlib
+import stat
 import unittest
 
 
@@ -21,8 +22,11 @@ class DocumentationTests(unittest.TestCase):
             "docs/release-notes-v0.1.2.md",
             "docs/launch-post.md",
             "docs/value.md",
+            "docs/producer-examples.md",
             "docs/security.md",
             "docs/assets/synthetic-preview.svg",
+            "examples/github-actions-agent-status.yml",
+            "examples/cron-agent-status.sh",
         ]
 
         for relative in required:
@@ -37,6 +41,7 @@ class DocumentationTests(unittest.TestCase):
             "docs/claude-plugin.md",
             "docs/payload-contract.md",
             "docs/value.md",
+            "docs/producer-examples.md",
             "docs/security.md",
         ):
             self.assertIn(expected, text)
@@ -71,6 +76,26 @@ class DocumentationTests(unittest.TestCase):
             "GitHub Actions and cron examples",
         ):
             self.assertIn(expected, text)
+
+    def test_producer_examples_are_safe_and_copyable(self) -> None:
+        workflow = (ROOT / "examples" / "github-actions-agent-status.yml").read_text(encoding="utf-8")
+        cron = (ROOT / "examples" / "cron-agent-status.sh").read_text(encoding="utf-8")
+        docs = (ROOT / "docs" / "producer-examples.md").read_text(encoding="utf-8")
+
+        self.assertIn("TRMNL_WEBHOOK_URL: ${{ secrets.TRMNL_WEBHOOK_URL }}", workflow)
+        self.assertIn("trmnl-agent push --merge-file trmnl-status.json", workflow)
+        self.assertIn("workflow_dispatch", workflow)
+        self.assertNotIn("https://trmnl.com/api/custom_plugins", workflow)
+
+        self.assertIn("Usage: cron-agent-status.sh [--dry-run|--push]", cron)
+        self.assertIn("trmnl-agent push --merge-file", cron)
+        self.assertIn("--dry-run", cron)
+        self.assertNotIn("https://trmnl.com/api/custom_plugins", cron)
+        self.assertTrue((ROOT / "examples" / "cron-agent-status.sh").stat().st_mode & stat.S_IXUSR)
+
+        self.assertIn("examples/github-actions-agent-status.yml", docs)
+        self.assertIn("examples/cron-agent-status.sh", docs)
+        self.assertIn("does not include command output", docs)
 
     def test_scaffold_language_removed_from_launch_docs(self) -> None:
         docs = [ROOT / "README.md", *sorted((ROOT / "docs").glob("*.md"))]
