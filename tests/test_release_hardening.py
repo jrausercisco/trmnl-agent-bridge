@@ -20,7 +20,8 @@ class ReleaseHardeningTests(unittest.TestCase):
 
         self.assertIn("./scripts/validate-release.sh", workflow)
         self.assertIn("./scripts/secret-scan.sh", workflow)
-        self.assertIn("actions/setup-python@v5", workflow)
+        self.assertIn("actions/checkout@v6", workflow)
+        self.assertIn("actions/setup-python@v6", workflow)
 
     def test_community_files_exist(self) -> None:
         for relative in (
