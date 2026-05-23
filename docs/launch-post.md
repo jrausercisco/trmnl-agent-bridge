@@ -69,7 +69,7 @@ The repo also includes starting producer examples for GitHub Actions and cron, s
 
 Repo: https://github.com/jrausercisco/trmnl-agent-bridge
 
-Release: https://github.com/jrausercisco/trmnl-agent-bridge/releases/tag/v0.1.2
+Release: https://github.com/jrausercisco/trmnl-agent-bridge/releases/tag/v0.1.3
 
 I would appreciate feedback on:
 

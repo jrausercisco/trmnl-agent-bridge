@@ -15,6 +15,7 @@ test -f docs/release-process.md
 test -f docs/release-notes-v0.1.0.md
 test -f docs/release-notes-v0.1.1.md
 test -f docs/release-notes-v0.1.2.md
+test -f docs/release-notes-v0.1.3.md
 test -f docs/launch-post.md
 test -f docs/value.md
 test -f docs/producer-examples.md

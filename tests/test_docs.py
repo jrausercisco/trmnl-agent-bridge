@@ -20,6 +20,7 @@ class DocumentationTests(unittest.TestCase):
             "docs/release-notes-v0.1.0.md",
             "docs/release-notes-v0.1.1.md",
             "docs/release-notes-v0.1.2.md",
+            "docs/release-notes-v0.1.3.md",
             "docs/launch-post.md",
             "docs/value.md",
             "docs/producer-examples.md",
@@ -84,6 +85,7 @@ class DocumentationTests(unittest.TestCase):
 
         self.assertIn("TRMNL_WEBHOOK_URL: ${{ secrets.TRMNL_WEBHOOK_URL }}", workflow)
         self.assertIn("trmnl-agent push --merge-file trmnl-status.json", workflow)
+        self.assertIn("trmnl-agent-bridge.git@v0.1.3", workflow)
         self.assertIn("workflow_dispatch", workflow)
         self.assertNotIn("https://trmnl.com/api/custom_plugins", workflow)
 
