@@ -4,7 +4,7 @@
       <div class="meta"></div>
       <div class="content">
         <span class="label label--underline">{{ title | default: "AGENT NOW" }}</span>
-        <span class="title">{{ state | default: "WATCH" }}</span>
+        <span class="title portrait:title--small lg:title--large">{{ state | default: "WATCH" }}</span>
       </div>
     </div>
     <div class="item">
@@ -46,9 +46,9 @@
     <div class="content">
       <span class="label">SIGNALS</span>
       {% if signals %}
-        <div class="grid grid--cols-4">
+        <div class="grid grid--cols-3">
           {% for signal in signals limit: 4 %}
-            <span class="description">{{ signal }}</span>
+            <span class="description" data-clamp="1">{{ signal }}</span>
           {% endfor %}
         </div>
       {% else %}
@@ -56,4 +56,8 @@
       {% endif %}
     </div>
   </div>
+</div>
+<div class="title_bar">
+  <span class="title">TRMNL Agent Bridge</span>
+  <span class="instance">{{ trmnl.plugin_settings.instance_name | default: "TRMNL Agent Bridge" }}</span>
 </div>
