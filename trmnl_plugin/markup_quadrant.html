@@ -1,33 +1,33 @@
-<div class="layout layout--col gap--small">
+<div class="layout layout--col gap--small lg:gap--medium lg:layout--stretch-y">
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label label--underline">{{ title | default: "AGENT NOW" }}</span>
-      <span class="title portrait:title--small lg:title--large">{{ state | default: "WATCH" }}</span>
+      <span class="label label--underline lg:label--large">{{ title | default: "AGENT NOW" }}</span>
+      <span class="value value--small lg:value--base">{{ state | default: "WATCH" }}</span>
     </div>
   </div>
 
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label">STATUS</span>
-      <span class="description">{{ headline | default: "Waiting for the next agent update" }}</span>
+      <span class="label lg:label--large">STATUS</span>
+      <span class="description lg:description--large">{{ headline | default: "Waiting for the next agent update" }}</span>
     </div>
   </div>
 
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label">NEXT</span>
-      <span class="description">{{ next | default: "Idle" }}</span>
+      <span class="label lg:label--large">NEXT</span>
+      <span class="description lg:description--large">{{ next | default: "Idle" }}</span>
     </div>
   </div>
 
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label">{{ source | default: "agent" }}</span>
-      <span class="description">{{ updated | default: "not updated" }}</span>
+      <span class="label lg:label--large">{{ source | default: "agent" }}</span>
+      <span class="description lg:description--large">{{ updated | default: "not updated" }}</span>
     </div>
   </div>
 </div>
