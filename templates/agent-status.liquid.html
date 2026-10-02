@@ -1,35 +1,35 @@
-<div class="layout layout--col gap--medium">
-  <div class="grid grid--cols-2">
+<div class="layout layout--col gap--medium lg:gap--large lg:layout--stretch-y">
+  <div class="grid grid--cols-2 lg:portrait:grid--cols-1">
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label label--underline">{{ title | default: "AGENT NOW" }}</span>
-        <span class="title title--large lg:title--xlarge portrait:title--base">{{ state | default: "WATCH" }}</span>
+        <span class="label label--underline lg:label--xlarge">{{ title | default: "AGENT NOW" }}</span>
+        <span class="value value--base lg:value--xlarge lg:portrait:value--large">{{ state | default: "WATCH" }}</span>
       </div>
     </div>
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">UPDATED</span>
-        <span class="description">{{ updated | default: "not updated" }}</span>
+        <span class="label lg:label--xlarge">UPDATED</span>
+        <span class="description lg:description--xlarge">{{ updated | default: "not updated" }}</span>
       </div>
     </div>
   </div>
 
-  <div class="grid grid--cols-2">
+  <div class="grid grid--cols-2 lg:portrait:grid--cols-1">
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">CURRENT STATUS</span>
-        <span class="title">{{ headline | default: "Waiting for the next agent update" }}</span>
-        <span class="description">{{ detail | default: "No current status has been pushed." }}</span>
+        <span class="label lg:label--xlarge">CURRENT STATUS</span>
+        <span class="title lg:title--xxlarge">{{ headline | default: "Waiting for the next agent update" }}</span>
+        <span class="description lg:description--xlarge">{{ detail | default: "No current status has been pushed." }}</span>
       </div>
     </div>
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">NEXT</span>
-        <span class="description">{{ next | default: "Idle" }}</span>
+        <span class="label lg:label--xlarge">NEXT</span>
+        <span class="description lg:description--xlarge">{{ next | default: "Idle" }}</span>
       </div>
     </div>
   </div>
@@ -37,32 +37,37 @@
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label">SIGNALS</span>
+      <span class="label lg:label--xlarge">SIGNALS</span>
       {% if signals %}
-        <div class="grid grid--cols-2">
+        <div class="grid grid--cols-2 lg:hidden">
           {% for signal in signals limit: 4 %}
             <span class="description" data-clamp="1">{{ signal }}</span>
           {% endfor %}
         </div>
+        <div class="hidden lg:grid grid--cols-2 lg:portrait:grid--cols-1">
+          {% for signal in signals limit: 4 %}
+            <span class="description lg:description--xlarge" data-clamp="2">{{ signal }}</span>
+          {% endfor %}
+        </div>
       {% else %}
-        <span class="description">No signals yet</span>
+        <span class="description lg:description--xlarge">No signals yet</span>
       {% endif %}
     </div>
   </div>
 
-  <div class="grid grid--cols-2">
+  <div class="grid grid--cols-2 lg:portrait:grid--cols-1">
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">SOURCE</span>
-        <span class="description">{{ source | default: "agent" }}</span>
+        <span class="label lg:label--xlarge">SOURCE</span>
+        <span class="description lg:description--xlarge">{{ source | default: "agent" }}</span>
       </div>
     </div>
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">HEALTH</span>
-        <span class="description">{{ health | default: "Bridge not checked" }}</span>
+        <span class="label lg:label--xlarge">HEALTH</span>
+        <span class="description lg:description--xlarge">{{ health | default: "Bridge not checked" }}</span>
       </div>
     </div>
   </div>
