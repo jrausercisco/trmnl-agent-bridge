@@ -1,42 +1,42 @@
-<div class="layout layout--col gap--small">
-  <div class="grid grid--cols-3">
+<div class="layout layout--col gap--small lg:gap--medium lg:layout--stretch-y">
+  <div class="grid grid--cols-3 lg:portrait:grid--cols-2">
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label label--underline">{{ title | default: "AGENT NOW" }}</span>
-        <span class="title portrait:title--small lg:title--large">{{ state | default: "WATCH" }}</span>
+        <span class="label label--underline lg:label--large">{{ title | default: "AGENT NOW" }}</span>
+        <span class="value value--small lg:value--large lg:portrait:value--base">{{ state | default: "WATCH" }}</span>
       </div>
     </div>
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">UPDATED</span>
-        <span class="description">{{ updated | default: "not updated" }}</span>
+        <span class="label lg:label--large">UPDATED</span>
+        <span class="description lg:description--large">{{ updated | default: "not updated" }}</span>
       </div>
     </div>
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">SOURCE</span>
-        <span class="description">{{ source | default: "agent" }}</span>
+        <span class="label lg:label--large">SOURCE</span>
+        <span class="description lg:description--large">{{ source | default: "agent" }}</span>
       </div>
     </div>
   </div>
 
-  <div class="grid grid--cols-2">
+  <div class="grid grid--cols-2 lg:portrait:grid--cols-1">
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">CURRENT STATUS</span>
-        <span class="title">{{ headline | default: "Waiting for the next agent update" }}</span>
-        <span class="description">{{ detail | default: "No current status has been pushed." }}</span>
+        <span class="label lg:label--large">CURRENT STATUS</span>
+        <span class="title lg:title--large">{{ headline | default: "Waiting for the next agent update" }}</span>
+        <span class="description lg:description--large">{{ detail | default: "No current status has been pushed." }}</span>
       </div>
     </div>
     <div class="item">
       <div class="meta"></div>
       <div class="content">
-        <span class="label">NEXT</span>
-        <span class="description">{{ next | default: "Idle" }}</span>
+        <span class="label lg:label--large">NEXT</span>
+        <span class="description lg:description--large">{{ next | default: "Idle" }}</span>
       </div>
     </div>
   </div>
@@ -44,15 +44,15 @@
   <div class="item">
     <div class="meta"></div>
     <div class="content">
-      <span class="label">SIGNALS</span>
+      <span class="label lg:label--large">SIGNALS</span>
       {% if signals %}
-        <div class="grid grid--cols-3">
+        <div class="grid grid--cols-3 lg:portrait:grid--cols-2">
           {% for signal in signals limit: 4 %}
-            <span class="description" data-clamp="1">{{ signal }}</span>
+            <span class="description lg:description--large" data-clamp="1">{{ signal }}</span>
           {% endfor %}
         </div>
       {% else %}
-        <span class="description">No signals yet</span>
+        <span class="description lg:description--large">No signals yet</span>
       {% endif %}
     </div>
   </div>
